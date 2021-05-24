@@ -4,7 +4,9 @@
 from typing import Optional
 
 # Pip
-from web3 import Web3, eth as Eth
+from web3 import Web3
+from web3.eth import Eth
+
 from eth_account.signers.local import LocalAccount
 
 from web3_wrapped_contract import WrappedContract
