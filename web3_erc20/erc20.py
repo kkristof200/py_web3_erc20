@@ -1,7 +1,8 @@
 # ------------------------------------------------------------ Imports ----------------------------------------------------------- #
 
 # System
-from typing import Optional
+from typing import Optional, Union
+from decimal import Decimal
 
 # Pip
 from web3 import Web3
@@ -238,31 +239,32 @@ class ERC20(WrappedContract):
 
     def toWei(
         self,
-        amount: int
-    ) -> float:
-        return amount * pow(10, self.decimals()) if self.decimals() > 0 else amount
+        amount: Union[int, float, Decimal]
+    ) -> int:
+        return int(Decimal(amount) * Decimal(pow(10, self.decimals()))) if self.decimals() > 0 else int(amount)
 
     def toEth(
         self,
-        amount: int
-    ) -> float:
-        return amount / pow(10, self.decimals()) if self.decimals() > 0 else amount
+        amount: Union[int, float, Decimal]
+    ) -> Decimal:
+        return Decimal(amount) / Decimal(pow(10, self.decimals())) if self.decimals() > 0 else Decimal(amount)
 
     def marketCap(
         self,
-        price_per_token: int
-    ) -> int:
-        return price_per_token * self.totalSupply()
+        price_per_token: Union[int, float, Decimal],
+        total_supply: Optional[Union[int, float, Decimal]] = None
+    ) -> Decimal:
+        return Decimal(price_per_token) * Decimal(total_supply or self.total_supply())
 
     def marketCapEth(
         self,
-        price_per_token: int
-    ) -> int:
+        price_per_token: Union[int, float, Decimal]
+    ) -> Decimal:
         return self.toEth(self.marketCap(price_per_token))
 
     def marketCapWei(
         self,
-        price_per_token: int
+        price_per_token: Union[int, float, Decimal]
     ) -> int:
         return self.toWei(self.marketCap(price_per_token))
 
