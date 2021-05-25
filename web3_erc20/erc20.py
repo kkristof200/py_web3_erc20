@@ -6,7 +6,7 @@ from typing import Optional
 # Pip
 from web3 import Web3
 from web3.eth import Eth
-
+from web3.contract import ContractFunction
 from eth_account.signers.local import LocalAccount
 
 from web3_wrapped_contract import WrappedContract
@@ -49,49 +49,78 @@ class ERC20(WrappedContract):
 
     def name(self) -> str:
         if not self.__name:
-            self.__name = self.functions.name().call()
+            self.__name = self.name_method().call()
 
         return self.__name
 
+    def name_method(self) -> ContractFunction:
+        return self.functions.name()
+
+
     def symbol(self) -> str:
         if not self.__symbol:
-            self.__symbol = self.functions.symbol().call()
+            self.__symbol = self.symbol_method().call()
 
         return self.__symbol
 
+    def symbol_method(self) -> ContractFunction:
+        return self.functions.symbol()
+
+
     def decimals(self) -> int:
         if not self.__decimals:
-            self.__decimals = self.functions.decimals().call()
+            self.__decimals = self.decimals_method().call()
 
         return self.__decimals
+
+    def decimals_method(self) -> ContractFunction:
+        return self.functions.decimals()
 
 
     # Read (Non-Cachable)
 
     def total_supply(self) -> int:
-        return self.functions.totalSupply().call()
+        return self.total_supply_method().call()
 
     # alias
     totalSupply = total_supply
+
+    def total_supply_method(self) -> ContractFunction:
+        return self.functions.totalSupply()
+
 
     def balance_of(
         self,
         address: str
     ) -> int:
-        return self.functions.balanceOf(Web3.toChecksumAddress(address)).call()
+        return self.balance_of_method(address).call()
 
     # alias
     balanceOf = balance_of
+
+    def balance_of_method(
+        self,
+        address: str
+    ) -> ContractFunction:
+        return self.functions.balanceOf(Web3.toChecksumAddress(address))
+
 
     def allowance(
         self,
         owner: str,
         spender: str
     ) -> int:
+        return self.allowance_method(owner, spender).call()
+
+    def allowance_method(
+        self,
+        owner: str,
+        spender: str
+    ) -> ContractFunction:
         return self.functions.allowance(
             Web3.toChecksumAddress(owner),
             Web3.toChecksumAddress(spender)
-        ).call()
+        )
 
 
     # Write
@@ -173,7 +202,7 @@ class ERC20(WrappedContract):
             ),
             account=account
         )
-    
+
     # alias
     transferFrom = transfer_from
 
@@ -185,7 +214,7 @@ class ERC20(WrappedContract):
             function=self.functions.renounceOwnership(),
             account=account
         )
-    
+
     # alias
     renounceOwnership = renounce_ownership
 
@@ -200,7 +229,7 @@ class ERC20(WrappedContract):
             ),
             account=account
         )
-    
+
     # alias
     transferOwnership = transfer_ownership
 

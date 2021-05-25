@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name='web3_erc20',
-    version='0.0.3',
+    version='0.0.4',
     author='Kristóf-Attila Kovács',
     description='web3_erc20',
     long_description=long_description,
