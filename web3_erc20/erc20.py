@@ -7,7 +7,7 @@ from decimal import Decimal
 # Pip
 from web3 import Web3
 from web3.eth import Eth
-from web3.contract import ContractFunction
+from web3.contract import ContractEvent, ContractFunction
 from eth_account.signers.local import LocalAccount
 
 from web3_wrapped_contract import WrappedContract
@@ -42,6 +42,17 @@ class ERC20(WrappedContract):
         self.__name = None
         self.__symbol = None
         self.__decimals = None
+
+
+    # --------------------------------------------------- Public properties -------------------------------------------------- #
+
+    @property
+    def approval(self) -> ContractEvent:
+        return self.events.Approval()
+
+    @property
+    def transfer(self) -> ContractEvent:
+        return self.events.Transfer()
 
 
     # ---------------------------------------------------- Public methods ---------------------------------------------------- #
