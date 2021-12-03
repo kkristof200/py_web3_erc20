@@ -34,4 +34,4 @@ import web3_erc20
 
 ## Dependencies
 
-[eth-account](https://pypi.org/project/eth-account), [web3](https://pypi.org/project/web3), [web3-wrapped-contract](https://pypi.org/project/web3-wrapped-contract)
+[eth-account](https://pypi.org/project/eth-account), [setuptools](https://pypi.org/project/setuptools), [web3](https://pypi.org/project/web3), [web3-wrapped-contract](https://pypi.org/project/web3-wrapped-contract)

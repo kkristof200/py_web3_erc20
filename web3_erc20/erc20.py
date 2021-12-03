@@ -141,6 +141,10 @@ class ERC20(WrappedContract):
         self,
         spender: str,
         amount: int,
+        gas: Optional[int] = None,
+        gas_price: Optional[int] = None,
+        max_fee_per_gas: Optional[int] = None,
+        max_priority_fee_per_gas: Optional[int] = None,
         account: Optional[LocalAccount] = None
     ) -> str:
         return self.send_transaction(
@@ -148,6 +152,10 @@ class ERC20(WrappedContract):
                 Web3.toChecksumAddress(spender),
                 amount
             ),
+            gas=gas,
+            gas_price=gas_price,
+            max_fee_per_gas=max_fee_per_gas,
+            max_priority_fee_per_gas=max_priority_fee_per_gas,
             account=account
         )
 
@@ -155,6 +163,10 @@ class ERC20(WrappedContract):
         self,
         spender: str,
         subtracted_value: int,
+        gas: Optional[int] = None,
+        gas_price: Optional[int] = None,
+        max_fee_per_gas: Optional[int] = None,
+        max_priority_fee_per_gas: Optional[int] = None,
         account: Optional[LocalAccount] = None
     ) -> str:
         return self.send_transaction(
@@ -162,6 +174,10 @@ class ERC20(WrappedContract):
                 Web3.toChecksumAddress(spender),
                 subtracted_value
             ),
+            gas=gas,
+            gas_price=gas_price,
+            max_fee_per_gas=max_fee_per_gas,
+            max_priority_fee_per_gas=max_priority_fee_per_gas,
             account=account
         )
 
@@ -172,6 +188,10 @@ class ERC20(WrappedContract):
         self,
         spender: str,
         added_value: int,
+        gas: Optional[int] = None,
+        gas_price: Optional[int] = None,
+        max_fee_per_gas: Optional[int] = None,
+        max_priority_fee_per_gas: Optional[int] = None,
         account: Optional[LocalAccount] = None
     ) -> str:
         return self.send_transaction(
@@ -179,6 +199,10 @@ class ERC20(WrappedContract):
                 Web3.toChecksumAddress(spender),
                 added_value
             ),
+            gas=gas,
+            gas_price=gas_price,
+            max_fee_per_gas=max_fee_per_gas,
+            max_priority_fee_per_gas=max_priority_fee_per_gas,
             account=account
         )
 
@@ -189,6 +213,10 @@ class ERC20(WrappedContract):
         self,
         recipient: str,
         amount: int,
+        gas: Optional[int] = None,
+        gas_price: Optional[int] = None,
+        max_fee_per_gas: Optional[int] = None,
+        max_priority_fee_per_gas: Optional[int] = None,
         account: Optional[LocalAccount] = None
     ) -> str:
         return self.send_transaction(
@@ -196,6 +224,10 @@ class ERC20(WrappedContract):
                 recipient,
                 amount
             ),
+            gas=gas,
+            gas_price=gas_price,
+            max_fee_per_gas=max_fee_per_gas,
+            max_priority_fee_per_gas=max_priority_fee_per_gas,
             account=account
         )
 
@@ -204,6 +236,10 @@ class ERC20(WrappedContract):
         sender: str,
         recipient: int,
         amount: int,
+        gas: Optional[int] = None,
+        gas_price: Optional[int] = None,
+        max_fee_per_gas: Optional[int] = None,
+        max_priority_fee_per_gas: Optional[int] = None,
         account: Optional[LocalAccount] = None
     ) -> str:
         return self.send_transaction(
@@ -212,6 +248,10 @@ class ERC20(WrappedContract):
                 Web3.toChecksumAddress(recipient),
                 amount
             ),
+            gas=gas,
+            gas_price=gas_price,
+            max_fee_per_gas=max_fee_per_gas,
+            max_priority_fee_per_gas=max_priority_fee_per_gas,
             account=account
         )
 
@@ -220,10 +260,18 @@ class ERC20(WrappedContract):
 
     def renounce_ownership(
         self,
+        gas: Optional[int] = None,
+        gas_price: Optional[int] = None,
+        max_fee_per_gas: Optional[int] = None,
+        max_priority_fee_per_gas: Optional[int] = None,
         account: Optional[LocalAccount] = None
     ) -> str:
         return self.send_transaction(
             function=self.functions.renounceOwnership(),
+            gas=gas,
+            gas_price=gas_price,
+            max_fee_per_gas=max_fee_per_gas,
+            max_priority_fee_per_gas=max_priority_fee_per_gas,
             account=account
         )
 
@@ -233,12 +281,20 @@ class ERC20(WrappedContract):
     def transfer_ownership(
         self,
         new_owner: str,
+        gas: Optional[int] = None,
+        gas_price: Optional[int] = None,
+        max_fee_per_gas: Optional[int] = None,
+        max_priority_fee_per_gas: Optional[int] = None,
         account: Optional[LocalAccount] = None
     ) -> str:
         return self.send_transaction(
             function=self.functions.transferOwnership(
                 Web3.toChecksumAddress(new_owner)
             ),
+            gas=gas,
+            gas_price=gas_price,
+            max_fee_per_gas=max_fee_per_gas,
+            max_priority_fee_per_gas=max_priority_fee_per_gas,
             account=account
         )
 
