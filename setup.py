@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name='web3_erc20',
-    version='0.0.7',
+    version='0.0.8',
     author='Kristóf-Attila Kovács',
     description='web3_erc20',
     long_description=long_description,
@@ -19,9 +19,9 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'eth-account>=0.5.6',
-        'setuptools>=59.3.0',
+        'setuptools>=60.3.1',
         'web3>=5.25.0',
-        'web3-wrapped-contract>=0.0.15'
+        'web3-wrapped-contract>=0.0.16'
     ],
     classifiers=[
         'Programming Language :: Python :: 3.4',

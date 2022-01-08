@@ -1,7 +1,7 @@
 # ------------------------------------------------------------ Imports ----------------------------------------------------------- #
 
 # System
-from typing import Optional, Union
+from typing import Optional, Union, List
 from decimal import Decimal
 
 # Pip
@@ -29,7 +29,7 @@ class ERC20(WrappedContract):
         self,
         eth: Eth,
         address: str,
-        abi: str = erc20_abi,
+        abi: List[dict] = erc20_abi,
         account: Optional[LocalAccount] = None
     ):
         super().__init__(
